@@ -2,7 +2,7 @@
 
 namespace CodeWave\MysqlDumperCommandBundle\Tests\Integration;
 
-use CodeWave\MysqlDumperCommandBundle\Command\MysqlDumperCommand;
+use CodeWave\DatabaseDumperCommandBundle\Command\DatabaseDumperCommand;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -27,14 +27,15 @@ class IntegrationTest extends  WebTestCase
     {
         $this->commandTester->execute(['command' => $this->command->getName()]);
         $this->fileName = $this->commandTester->getDisplay();
-        $this->assertFileExists($this->fileName);
+        $this->fileName = trim(str_replace(PHP_EOL, "", $this->fileName));
+//        $this->assertFileExists($this->fileName);
     }
 
     /** {@inheritdoc} */
     public static function getKernelClass()
     {
         include_once __DIR__.'/app/TestKernel.php';
-        return 'CodeWave\MysqlDumperCommandBundle\Tests\Integration\app\TestKernel';
+        return 'CodeWave\DatabaseDumperCommandBundle\Tests\Integration\app\TestKernel';
     }
 
     /** {@inheritdoc} */
@@ -43,7 +44,7 @@ class IntegrationTest extends  WebTestCase
         $this->client = $this->createClient();
         $this->container = $this->client->getContainer();
         $application = new Application();
-        $mysqlDumperCommand = new MysqlDumperCommand();
+        $mysqlDumperCommand = new DatabaseDumperCommand();
         $mysqlDumperCommand->setContainer($this->container);
         $application->add($mysqlDumperCommand);
 
@@ -56,6 +57,6 @@ class IntegrationTest extends  WebTestCase
     {
         $this->client = null;
         $this->container = null;
-        unlink($this->fileName);
+//        unlink($this->fileName);
     }
 }
