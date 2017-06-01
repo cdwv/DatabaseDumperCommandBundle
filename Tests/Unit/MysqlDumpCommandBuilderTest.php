@@ -1,8 +1,8 @@
 <?php
 
-namespace CodeWave\MysqlDumperCommandBundle\Tests\Unit;
+namespace CodeWave\DatabaseDumperCommandBundle\Tests\Unit;
 
-use CodeWave\MysqlDumperCommandBundle\CommandBuilder\MysqlDumpCommandBuilder;
+use CodeWave\DatabaseDumperCommandBundle\CommandBuilder\MysqlDumpCommandBuilder;
 
 class MysqlDumpCommandBuilderTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,7 +41,7 @@ class MysqlDumpCommandBuilderTest extends \PHPUnit_Framework_TestCase
 
     private function getFileNameBuilderMock()
     {
-        $mock = $this->getMockBuilder('CodeWave\MysqlDumperCommandBundle\FileSystem\FileNameBuilder')->getMock();
+        $mock = $this->getMockBuilder('CodeWave\DatabaseDumperCommandBundle\FileSystem\FileNameBuilder')->getMock();
         $mock->method('buildName')->willReturn(self::DATABASE_DUMP_FILE);
         return $mock;
     }

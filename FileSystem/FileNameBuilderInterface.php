@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeWave\MysqlDumperCommandBundle\FileSystem;
+namespace CodeWave\DatabaseDumperCommandBundle\FileSystem;
 
 interface FileNameBuilderInterface
 {

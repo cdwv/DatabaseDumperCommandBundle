@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeWave\MysqlDumperCommandBundle\Command;
+namespace CodeWave\DatabaseDumperCommandBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\Process;
 
-class MysqlDumperCommand extends ContainerAwareCommand
+class DatabaseDumperCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
@@ -54,7 +54,7 @@ class MysqlDumperCommand extends ContainerAwareCommand
     {
         $platform = $connection->getDatabasePlatform()->getName();
 
-        $commandBuilder = $this->getContainer()->get("cdwv.mysql_dumper.dumper_command_builder.$platform");
+        $commandBuilder = $this->getContainer()->get("cdwv.database_dumper.dumper_command_builder.$platform");
 
         return $commandBuilder;
     }

@@ -1,14 +1,14 @@
 <?php
 
-namespace CodeWave\MysqlDumperCommandBundle\Tests\Unit;
+namespace CodeWave\DatabaseDumperCommandBundle\Tests\Unit;
 
-use CodeWave\MysqlDumperCommandBundle\FileSystem\FileNameBuilder;
+use CodeWave\DatabaseDumperCommandBundle\FileSystem\FileNameBuilder;
 
 class FileNameBuilderTest extends \PHPUnit_Framework_TestCase
 {
     const DATABASE_NAME = 'test_database_name';
     const DATE_TIME_TEST = '01-12-2017';
-    /** @var \CodeWave\MysqlDumperCommandBundle\FileSystem\FileNameBuilder */
+    /** @var \CodeWave\DatabaseDumperCommandBundle\FileSystem\FileNameBuilder */
     private $fileNameBuilder;
 
     public function setUp()
@@ -19,7 +19,6 @@ class FileNameBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testFileNameBuild()
     {
-
         $fileName = $this->fileNameBuilder->buildName(self::DATABASE_NAME);
 
         $this->assertStringStartsWith(self::DATABASE_NAME, $fileName);

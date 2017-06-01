@@ -1,9 +1,9 @@
 <?php
 
-namespace CodeWave\MysqlDumperCommandBundle\CommandBuilder;
+namespace CodeWave\DatabaseDumperCommandBundle\CommandBuilder;
 
 use Doctrine\DBAL\Connection;
-use CodeWave\MysqlDumperCommandBundle\FileSystem\FileNameBuilderInterface;
+use CodeWave\DatabaseDumperCommandBundle\FileSystem\FileNameBuilderInterface;
 
 class PgsqlDumpCommandBuilder implements DumpCommandBuilderInterface
 {

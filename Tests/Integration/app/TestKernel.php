@@ -1,8 +1,8 @@
 <?php
 
-namespace  CodeWave\MysqlDumperCommandBundle\Tests\Integration\app;
+namespace  CodeWave\DatabaseDumperCommandBundle\Tests\Integration\app;
 
-use CodeWave\MysqlDumperCommandBundle\CodeWaveMysqlDumperCommandBundle;
+use CodeWave\DatabaseDumperCommandBundle\CodeWaveDatabaseDumperCommandBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -17,7 +17,7 @@ class TestKernel extends Kernel
         new FrameworkBundle(),
         new TwigBundle(),
         new DoctrineBundle(),
-        new CodeWaveMysqlDumperCommandBundle(),
+        new CodeWaveDatabaseDumperCommandBundle(),
     );
     }
 
