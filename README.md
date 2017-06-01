@@ -2,18 +2,18 @@
 
 Description
 ------------
-Simple Symfony task for create backup/dump mysql database
+Simple Symfony task for create backup/dump database
 
 Installation
 ------------
 
 ```
-composer require cdwv/mysql-dumper-command-bundle
+composer require cdwv/database-dumper-command-bundle
 ```
 
 add bundle to AppKernel:
 ```
- new CodeWave\MysqlDumperCommandBundle\CodeWaveMysqlDumperCommandBundle(),
+ new CodeWave\DatabaseDumperCommandBundle\CodeWaveDatabaseDumperCommandBundle(),
 ```
 
 Run:

@@ -5,7 +5,7 @@ namespace CodeWave\DatabaseDumperCommandBundle\CommandBuilder;
 use Doctrine\DBAL\Connection;
 use CodeWave\DatabaseDumperCommandBundle\FileSystem\FileNameBuilderInterface;
 
-class MysqlDumpCommandBuilder implements DumpCommandBuilderInterface
+class PgsqlDumpCommandBuilder implements DumpCommandBuilderInterface
 {
     private $fileNameBuilder;
 
@@ -16,6 +16,10 @@ class MysqlDumpCommandBuilder implements DumpCommandBuilderInterface
 
     public function buildCommand(Connection $connection, $path)
     {
+        if (!$connection->getDatabase()) {
+            throw new \RuntimeException('No database!');
+        }
+
         if (!$path) {
             $path = '.';
         }
@@ -23,31 +27,30 @@ class MysqlDumpCommandBuilder implements DumpCommandBuilderInterface
         $fileName = $this->fileNameBuilder->buildName($connection->getDatabase());
         $fullPath = $path . '/' . $fileName;
 
-        $command = 'mysqldump ';
+        $command = 'pg_dump';
 
         if ($connection->getUsername()) {
-            $command = $command . ' -u ' . $connection->getUsername();
+            $command .= ' -U ' . $connection->getUsername();
         }
 
         if ($connection->getPort()) {
-            $command = $command . ' --port=' . $connection->getPort();
+            $command .= ' -p=' . $connection->getPort();
         }
 
-        if (!$connection->getDatabase()) {
-            throw new \RuntimeException('No database!');
-        }
 
         if ($connection->getHost()) {
-            $command = $command . ' -h ' . $connection->getHost();
+            $command .= ' -h ' . $connection->getHost();
         }
 
-        $command = $command . ' --single-transaction ' . $connection->getDatabase();
+        $command .= ' -d ' . $connection->getDatabase();
+
+        $command .= ' -v ';
 
         if ($connection->getPassword()) {
-            $command = $command . ' -p' . $connection->getPassword();
+            $command = 'PGPASSWORD="' . $connection->getPassword() . '" ' . $command;
         }
 
-        $command = $command . ' | bzip2 >> ' . $fullPath . '.bz2';
+        $command .= ' | bzip2 >> ' . $fullPath . '.bz2';
 
         return $command;
     }

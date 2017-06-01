@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeWave\MysqlDumperCommandBundle\CommandBuilder;
+namespace CodeWave\DatabaseDumperCommandBundle\CommandBuilder;
 
 use Doctrine\DBAL\Connection;
 

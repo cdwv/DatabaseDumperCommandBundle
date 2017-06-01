@@ -2,7 +2,7 @@
 
 namespace CodeWave\MysqlDumperCommandBundle\Tests\Integration;
 
-use CodeWave\MysqlDumperCommandBundle\Command\MysqlDumperCommand;
+use CodeWave\DatabaseDumperCommandBundle\Command\DatabaseDumperCommand;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
@@ -35,7 +35,7 @@ class IntegrationTest extends  WebTestCase
     public static function getKernelClass()
     {
         include_once __DIR__.'/app/TestKernel.php';
-        return 'CodeWave\MysqlDumperCommandBundle\Tests\Integration\app\TestKernel';
+        return 'CodeWave\DatabaseDumperCommandBundle\Tests\Integration\app\TestKernel';
     }
 
     /** {@inheritdoc} */
@@ -44,7 +44,7 @@ class IntegrationTest extends  WebTestCase
         $this->client = $this->createClient();
         $this->container = $this->client->getContainer();
         $application = new Application();
-        $mysqlDumperCommand = new MysqlDumperCommand();
+        $mysqlDumperCommand = new DatabaseDumperCommand();
         $mysqlDumperCommand->setContainer($this->container);
         $application->add($mysqlDumperCommand);
 
