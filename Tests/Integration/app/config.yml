@@ -24,5 +24,5 @@ doctrine:
         port:     ~
         dbname:   test
         user:     root
-        password: root
+        password: ~
         charset:  UTF8
