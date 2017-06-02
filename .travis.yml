@@ -19,6 +19,7 @@ services:
   - mysql
 
 before_install:
+  - mysql -e 'CREATE DATABASE dodump;'
   - composer install
 
 script:
