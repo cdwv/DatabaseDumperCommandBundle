@@ -4,4 +4,4 @@ parameters:
     database_port: null
     database_name: dodoump
     database_user: root
-    database_password: root
+    database_password:
