@@ -8,5 +8,5 @@ doctrine:
         port:     null
         dbname:   dodump
         user:     root
-        password: root
+        password:
         charset:  UTF8
