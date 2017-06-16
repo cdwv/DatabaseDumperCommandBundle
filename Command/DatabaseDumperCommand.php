@@ -2,6 +2,7 @@
 
 namespace CodeWave\DatabaseDumperCommandBundle\Command;
 
+use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -26,8 +27,13 @@ class DatabaseDumperCommand extends ContainerAwareCommand
     {
         $connections = $this->getDatabaseConnections();
 
+        /** @var Connection $connection */
         foreach ($connections as $connection) {
-            $commandBuilder = $this->getCommandBuilder($connection);
+            $connectionPlatformName = $connection->getDatabasePlatform()->getName();
+
+            $commandBuilder = $this->getContainer()
+                ->get('cdwv.database_dumper.dumper_command_builder.provider')
+                ->getCommandBuilder($connectionPlatformName);
 
             $command = $commandBuilder->buildCommand($connection, $input->getOption('path'));
 
@@ -48,14 +54,5 @@ class DatabaseDumperCommand extends ContainerAwareCommand
     private function getDatabaseConnections()
     {
         return $this->getContainer()->get('doctrine')->getConnections();
-    }
-
-    private function getCommandBuilder($connection)
-    {
-        $platform = $connection->getDatabasePlatform()->getName();
-
-        $commandBuilder = $this->getContainer()->get("cdwv.database_dumper.dumper_command_builder.$platform");
-
-        return $commandBuilder;
     }
 }
