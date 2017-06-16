@@ -1,0 +1,12 @@
+imports:
+    - { resource: config.yml }
+
+doctrine:
+    dbal:
+        driver:   pdo_pgsql
+        host:     localhost
+        port:     null
+        dbname:   dodump
+        user:     postgres
+        password: root
+        charset:  UTF8

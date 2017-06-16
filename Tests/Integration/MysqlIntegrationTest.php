@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeWave\MysqlDumperCommandBundle\Tests\Integration;
+namespace CodeWave\DatabaseDumperCommandBundle\Tests\Integration;
 
 use CodeWave\DatabaseDumperCommandBundle\Command\DatabaseDumperCommand;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -10,7 +10,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Client;
 
-class IntegrationTest extends  WebTestCase
+class MysqlIntegrationTest extends  WebTestCase
 {
     /** @var ContainerInterface */
     protected $container;
@@ -28,7 +28,7 @@ class IntegrationTest extends  WebTestCase
         $this->commandTester->execute(['command' => $this->command->getName()]);
         $this->fileName = $this->commandTester->getDisplay();
         $this->fileName = trim(str_replace(PHP_EOL, "", $this->fileName));
-//        $this->assertFileExists($this->fileName);
+        $this->assertFileExists($this->fileName);
     }
 
     /** {@inheritdoc} */
@@ -41,7 +41,7 @@ class IntegrationTest extends  WebTestCase
     /** {@inheritdoc} */
     public function setUp()
     {
-        $this->client = $this->createClient();
+        $this->client = $this->createClient(['environment' => 'mysql']);
         $this->container = $this->client->getContainer();
         $application = new Application();
         $mysqlDumperCommand = new DatabaseDumperCommand();
@@ -57,6 +57,6 @@ class IntegrationTest extends  WebTestCase
     {
         $this->client = null;
         $this->container = null;
-//        unlink($this->fileName);
+        unlink($this->fileName);
     }
 }

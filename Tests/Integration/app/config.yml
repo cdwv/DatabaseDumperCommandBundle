@@ -1,6 +1,3 @@
-imports:
-    - { resource: parameters.yml }
-
 parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
@@ -12,17 +9,7 @@ framework:
         engines: ['twig']
     session:
         storage_id: session.storage.mock_file
-    secret: %secret%
+    secret: '%secret%'
     router:          { resource: "%kernel.root_dir%/routing.yml" }
     profiler:
         collect: false
-
-doctrine:
-    dbal:
-        driver:   pdo_mysql
-        host:     localhost
-        port:     ~
-        dbname:   dodump
-        user:     root
-        password: ~
-        charset:  UTF8

@@ -17,9 +17,11 @@ addons:
 
 services:
   - mysql
+  - postgresql
 
 before_install:
   - mysql -e 'CREATE DATABASE dodump;'
+  - psql -c 'create database dodump;' -U postgres
   - composer install
 
 script:
