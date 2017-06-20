@@ -1,0 +1,8 @@
+imports:
+    - { resource: config.yml }
+
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        path:     '%kernel.root_dir%/dodump.db'
+        charset:  UTF8

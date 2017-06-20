@@ -12,6 +12,11 @@ services:
         arguments:
             - "@cdwv.database_dumper.file_name_builder"
 
+    cdwv.database_dumper.dumper_command_builder.sqlite:
+        class: CodeWave\DatabaseDumperCommandBundle\CommandBuilder\Sqlite3CommandBuilder
+        arguments:
+            - "@cdwv.database_dumper.file_name_builder"
+
     cdwv.database_dumper.dumper_command_builder.provider:
         class: CodeWave\DatabaseDumperCommandBundle\CommandBuilder\DumpCommandBuilderProvider
         arguments:

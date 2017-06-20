@@ -2,7 +2,7 @@
 
 namespace CodeWave\DatabaseDumperCommandBundle\Tests\Integration;
 
-class MysqlIntegrationTest extends  SetupIntegrationEnv
+class SqlLite3IntegrationTest extends SetupIntegrationEnv
 {
     protected $env = 'sqlite';
 }

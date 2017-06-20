@@ -3,17 +3,9 @@
 namespace CodeWave\DatabaseDumperCommandBundle\CommandBuilder;
 
 use Doctrine\DBAL\Connection;
-use CodeWave\DatabaseDumperCommandBundle\FileSystem\FileNameBuilderInterface;
 
-class MysqlDumpCommandBuilder implements DumpCommandBuilderInterface
+class MysqlDumpCommandBuilder extends BaseCommandBuilder implements DumpCommandBuilderInterface
 {
-    private $fileNameBuilder;
-
-    public function __construct(FileNameBuilderInterface $fileNameBuilder)
-    {
-        $this->fileNameBuilder = $fileNameBuilder;
-    }
-
     public function buildCommand(Connection $connection, $path)
     {
         if (!$path) {
