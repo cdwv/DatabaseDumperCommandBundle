@@ -8,12 +8,7 @@ class MysqlDumpCommandBuilder extends BaseCommandBuilder implements DumpCommandB
 {
     public function buildCommand(Connection $connection, $path)
     {
-        if (!$path) {
-            $path = '.';
-        }
-
-        $fileName = $this->fileNameBuilder->buildName($connection->getDatabase());
-        $fullPath = $path . '/' . $fileName;
+        $fullPath = $this->createFullPath($path, $connection->getDatabase());
 
         $command = 'mysqldump ';
 

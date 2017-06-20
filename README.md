@@ -13,7 +13,7 @@ composer require cdwv/database-dumper-command-bundle
 
 add bundle to AppKernel:
 ```
- new CodeWave\DatabaseDumperCommandBundle\CodeWaveDatabaseDumperCommandBundle(),
+new CodeWave\DatabaseDumperCommandBundle\CodeWaveDatabaseDumperCommandBundle(),
 ```
 
 Run:

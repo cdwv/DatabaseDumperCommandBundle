@@ -8,16 +8,7 @@ class PgsqlDumpCommandBuilder extends BaseCommandBuilder implements DumpCommandB
 {
     public function buildCommand(Connection $connection, $path)
     {
-        if (!$connection->getDatabase()) {
-            throw new \RuntimeException('No database!');
-        }
-
-        if (!$path) {
-            $path = '.';
-        }
-
-        $fileName = $this->fileNameBuilder->buildName($connection->getDatabase());
-        $fullPath = $path . '/' . $fileName;
+        $fullPath = $fullPath = $this->createFullPath($path, $connection->getDatabase());
 
         $command = 'pg_dump';
 

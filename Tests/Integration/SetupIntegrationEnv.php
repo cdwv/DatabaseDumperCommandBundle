@@ -22,7 +22,7 @@ class SetupIntegrationEnv extends  WebTestCase
     protected $command;
     /** @var  string */
     protected $fileName;
-
+    /** @var string */
     protected $env = '';
 
     public function testCommand()

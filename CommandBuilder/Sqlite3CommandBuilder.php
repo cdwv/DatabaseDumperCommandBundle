@@ -8,20 +8,11 @@ class Sqlite3CommandBuilder extends BaseCommandBuilder implements DumpCommandBui
 {
     public function buildCommand(Connection $connection, $path)
     {
-        if (!$connection->getDatabase()) {
-            throw new \RuntimeException('No database!');
-        }
-
-        if (!$path) {
-            $path = '.';
-        }
-
         $databasePath = $connection->getDatabase();
+
         $databaseName = $this->getDatabaseName($databasePath);
 
-        $fileName = $this->fileNameBuilder->buildName($databaseName);
-
-        $fullPath = $path . $fileName;
+        $fullPath = $this->createFullPath($path, $databaseName);
 
         $command = 'sqlite3 ';
 
